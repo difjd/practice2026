@@ -1,10 +1,10 @@
 package dev.vorstu.repositories;
 
-import dev.vorstu.dto.Student;
-import org.springframework.data.repository.CrudRepository;
+import dev.vorstu.entities.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface StudentRepository extends CrudRepository<Student, Long> {
+public interface StudentRepository extends JpaRepository<Student, Long> {
     Optional<Student> findFirstByGroup(String group);
 }

@@ -1,14 +1,11 @@
 package dev.vorstu.controllers;
 
 
-import dev.vorstu.dto.Student;
-import dev.vorstu.repositories.StudentRepository;
-
+import dev.vorstu.entities.Student;
+import org.springframework.data.domain.Page;
+import dev.vorstu.services.StudentService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.util.ArrayList;
 
 import java.util.List;
 
@@ -16,53 +13,46 @@ import java.util.List;
 @RestController
 @RequestMapping("api/base")
 public class BaseController {
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
-    public BaseController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public BaseController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @PostMapping(value = "students", produces = MediaType.APPLICATION_JSON_VALUE)
     public Student createStudent(@RequestBody Student newStudent){
-        return studentRepository.save(newStudent);
+        return studentService.createStudent(newStudent);
     }
 
     @PutMapping(value = "students", produces = MediaType.APPLICATION_JSON_VALUE)
     public Student changeStudent(@RequestBody Student changingStudent){
-        if(changingStudent.getId()==null) throw new RuntimeException("id of changing student can`t be null");
-        Student student = studentRepository.findById(changingStudent.getId())
-                .orElseThrow(() -> new RuntimeException("student wasn`t found, id: " + changingStudent.getId()));
-        student.setFio(changingStudent.getFio());
-        student.setGroup(changingStudent.getGroup());
-        student.setPhoneNumber(changingStudent.getPhoneNumber());
-
-        return studentRepository.save(student);
+        return studentService.changeStudent(changingStudent);
     }
 
     @DeleteMapping(value = "students/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Long deleteStudent(@PathVariable("id") Long id){
-        studentRepository.deleteById(id);
-        return id;
+        return studentService.deleteStudent(id);
     }
 
     @GetMapping(value = "students/filter", produces = MediaType.APPLICATION_JSON_VALUE)
     public Student getStudentByGroup(@RequestParam(value = "group") String group){
-        return studentRepository.findFirstByGroup(group)
-                .orElse(null);
+        return studentService.getStudentByGroup(group);
     }
 
     @GetMapping(value = "students/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Student getStudentById(@PathVariable("id") Long id){
-        return studentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("student wasnt found, id: " + id));
+        return studentService.getStudentById(id);
     }
 
 
     @GetMapping("students")
     public List<Student> getAllStudents(){
-        List<Student> students = new ArrayList<>();
-        studentRepository.findAll().forEach(students::add);
-        return students;
+        return  studentService.getAllStudents();
+    }
+
+    @GetMapping(value = "students/page", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Page<Student> getStudentPage(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "2") int size){
+        return studentService.getStudentsPage(page,size);
     }
 
 }
