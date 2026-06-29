@@ -1,4 +1,4 @@
-package dev.vorstu.dto;
+package dev.vorstu.dto.student;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentCreateDto {
+public class StudentResponseDto {
+    private Long id;
     private String fio;
-    private String group;
     private String phoneNumber;
+    private Long groupId;
+    private String groupName;
+    private String email;
 }

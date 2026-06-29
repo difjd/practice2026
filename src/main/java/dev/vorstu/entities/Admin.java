@@ -1,36 +1,32 @@
 package dev.vorstu.entities;
 
-
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name="students")
-public class Student {
+@Table(name = "admins")
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String fio;
-
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @Column(nullable = false)
+    private String phoneNumber;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @Column(nullable = false)
-    private String phoneNumber;
 
-    public Student(String fio, Group group, User user, String phoneNumber) {
+    public Admin(String fio, String phoneNumber, User user) {
         this.fio = fio;
-        this.group = group;
-        this.user = user;
         this.phoneNumber = phoneNumber;
+        this.user = user;
     }
 }
