@@ -5,11 +5,14 @@ import dev.vorstu.dto.teacher.TeacherResponseDto;
 import dev.vorstu.dto.teacher.TeacherUpdateDto;
 import dev.vorstu.services.TeacherService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/teachers")
+@PreAuthorize("hasRole('ADMIN')")
 public class TeacherController {
     private final TeacherService teacherService;
 

@@ -5,12 +5,14 @@ import dev.vorstu.dto.group.GroupResponseDto;
 import dev.vorstu.dto.group.GroupUpdateDto;
 import dev.vorstu.services.GroupService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/groups")
+@PreAuthorize("hasRole('ADMIN')")
 public class GroupController {
     private final GroupService groupService;
 

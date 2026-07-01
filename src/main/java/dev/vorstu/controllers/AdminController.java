@@ -5,12 +5,14 @@ import dev.vorstu.dto.admin.AdminResponseDto;
 import dev.vorstu.dto.admin.AdminUpdateDto;
 import dev.vorstu.services.AdminService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/admins")
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
     private final AdminService adminService;
 

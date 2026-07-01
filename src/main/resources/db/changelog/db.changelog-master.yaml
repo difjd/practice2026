@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/001-create-users.sql
+  - include:
+      file: db/changelog/002-create-groups.sql
+  - include:
+      file: db/changelog/003-create-students.sql
+  - include:
+      file: db/changelog/004-create-teachers.sql
+  - include:
+      file: db/changelog/005-create-admins.sql
+  - include:
+      file: db/changelog/006-create-teacher-groups.sql
+  - include:
+      file: db/changelog/007-insert-test-data.sql

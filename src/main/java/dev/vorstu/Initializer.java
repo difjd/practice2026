@@ -2,6 +2,7 @@ package dev.vorstu;
 
 import dev.vorstu.entities.Group;
 import dev.vorstu.entities.Student;
+import dev.vorstu.entities.Teacher;
 import dev.vorstu.entities.User;
 import dev.vorstu.enums.Role;
 import dev.vorstu.repositories.GroupRepository;
@@ -33,9 +34,19 @@ public class Initializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        Group groupVm = new Group("VM");
 //        groupRepository.save(groupVm);
-//        User user1 = new User("user1@mail.ru", passwordEncoder.encode("123"), Role.STUDENT);
-//        userRepository.save(user1);
-//        Student student1 = new Student("User1", groupVm, user1, "+7");
-//        studentRepository.save(student1);
+//        Group groupAm = new Group("AM");
+//        groupRepository.save(groupAm);
+//        User studentUser = new User("student@test.com", passwordEncoder.encode("1234"), Role.STUDENT);
+//        userRepository.save(studentUser);
+//        Student student = new Student("Student Test", groupVm, studentUser, "+70000000001");
+//        studentRepository.save(student);
+//        User teacherUser = new User("teacher@test.com", passwordEncoder.encode("1234"), Role.TEACHER);
+//        userRepository.save(teacherUser);
+//        Teacher teacher = new Teacher("Teacher Test", "+70000000002", teacherUser);
+//        teacher.getGroups().add(groupVm);
+//        teacherRepository.save(teacher);
+//        User adminUser = new User("admin@test.com", passwordEncoder.encode("1234"), Role.ADMIN);
+//        userRepository.save(adminUser);
+
     }
 }

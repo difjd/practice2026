@@ -1,4 +1,4 @@
-package dev.vorstu.config;
+package dev.vorstu.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
